@@ -1,32 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
   name: myapp
+  namespace: argocd
 spec:
-  generators:
-  - list:
-      elements:
-      - cluster: in-cluster
-        url: https://kubernetes.default.svc
-  template:
-    metadata:
-      name: '{{cluster}}-myapp'
-    spec:
-      project: my-project
-      sources: 
-        - repoURL: https://github.com/kbaras2020/projetosd23.git
-          targetRevision: HEAD
-          path: k3sconfig
-        - repoURL: https://github.com/kbaras2020/sd1.git
-          targetRevision: HEAD
-          path: k3sconfig
-      destination:
-        server: '{{url}}'
-        namespace: testes
-      syncPolicy:
-        syncOptions:
-        - CreateNamespace=true
-        - FailOnSharedResource=true
-        automated:
-          selfHeal: true
-          prune: true
+  project: default
+  sources: 
+    - repoURL: https://github.com/kbaras2020/projetosd23.git
+      targetRevision: HEAD
+      path: k3sconfig
+    - repoURL: https://github.com/kbaras2020/sd1.git
+      targetRevision: HEAD
+      path: k3sconfig
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: testes
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - FailOnSharedResource=true
+    automated:
+      selfHeal: true
+      prune: true
