@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
-  name: myapp
+  name: myapps
   namespace: argocd
 spec:
   project: default
   sources: 
-    repoURL: https://github.com/kbaras2020/projetosd23.git
+  - repoURL: https://github.com/kbaras2020/projetosd23.git
     targetRevision: HEAD
     path: k3sconfig
-    repoURL: https://github.com/kbaras2020/sd1.git
+  - repoURL: https://github.com/kbaras2020/sd1.git
     targetRevision: HEAD
     path: k3sconfig
   destination:
