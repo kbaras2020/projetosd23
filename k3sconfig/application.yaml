@@ -9,6 +9,9 @@ spec:
     repoURL: https://github.com/kbaras2020/projetosd23.git
     targetRevision: HEAD
     path: k3sconfig
+    repoURL: https://github.com/kbaras2020/sd1.git
+    targetRevision: HEAD
+    path: k3sconfig
   destination:
     server: https://kubernetes.default.svc
     namespace: testes
