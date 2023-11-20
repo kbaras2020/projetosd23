@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: notificacoes
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/AxFire99/Sistemas_Distribuidos.git
+    targetRevision: 'main'
+    path: k8s-configuration
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sge
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - FailOnSharedResource=true
+
+    automated:
+      selfHeal: true
+      prune: true
