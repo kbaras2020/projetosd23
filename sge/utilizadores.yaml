@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: utilizadores
+  name: sdist-login
   namespace: argocd
 spec:
   destination:
@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/miguelfcostaa/SDist'
-    path: yaml
+    path: k8s
     targetRevision: HEAD
   syncPolicy:
     automated:
